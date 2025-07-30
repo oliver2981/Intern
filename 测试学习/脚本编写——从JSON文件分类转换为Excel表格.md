@@ -203,8 +203,6 @@ if __name__ == "__main__":
     process_json_files()
 ```
 
-以下是逐行代码解析（Markdown格式）：
-
 ## 2. 完整代码解析
 
 ### 2.1 导入模块部分
