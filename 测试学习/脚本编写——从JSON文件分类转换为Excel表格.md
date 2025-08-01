@@ -215,10 +215,10 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, Alignment, Border, Side, PatternFill
 ```
 - `os`：用于操作系统文件路径和目录操作
-- `json`：处理JSON格式的测试用例文件
+- `json`：处理 JSON 格式的测试用例文件
 - `re`：正则表达式模块，用于提取章节数字
-- `pandas`：数据处理核心库，用于生成Excel
-- `openpyxl`相关导入：用于Excel样式设置
+- `pandas`：数据处理核心库，用于生成 Excel
+- `openpyxl`相关导入：用于 Excel 样式设置
 
 ### 2.2 样式设置函数
 ```python
@@ -259,7 +259,7 @@ def set_excel_style(ws):
     }
 ```
 - 定义各列最大宽度限制（字符数）
-- 特别控制"步骤"和"预期"列不超过40字符
+- 特别控制"步骤"和"预期"列不超过 40 字符
 
 ### 2.6 主处理函数
 ```python
@@ -267,8 +267,8 @@ def process_json_files():
     input_dir = r"D:\test"
     output_dir = r"D:\test_output"
 ```
-- `input_dir`：原始JSON文件存放路径
-- `output_dir`：生成的Excel输出路径
+- `input_dir`：原始 JSON 文件存放路径
+- `output_dir`：生成的 Excel 输出路径
 
 ### 2.7 数据收集阶段
 ```python
@@ -276,7 +276,7 @@ def process_json_files():
         if filename.endswith(".json"):
             module_name = os.path.splitext(filename)[0]
 ```
-- 遍历输入目录所有.json文件
+- 遍历输入目录所有.json 文件
 - 去除扩展名获取模块名称
 
 ### 2.8 章节数字提取
@@ -285,7 +285,7 @@ def process_json_files():
             chapter_num = int(match.group(1)) if match else 999
 ```
 - 使用正则提取文件名中的数字
-- 无数字文件归到999（未分类章节）
+- 无数字文件归到 999（未分类章节）
 
 ### 2.9 测试用例处理
 ```python
@@ -311,8 +311,8 @@ def process_json_files():
     ws = wb.active
     set_excel_style(ws)
 ```
-- 用pandas生成原始Excel
-- 用openpyxl加载后应用样式
+- 用 pandas 生成原始 Excel
+- 用 openpyxl 加载后应用样式
 - 最后保存美化后的文件
 
 ### 2.12 主程序入口
@@ -320,7 +320,7 @@ def process_json_files():
 if __name__ == "__main__":
     process_json_files()
 ```
-- 标准Python主程序入口
+- 标准 Python 主程序入口
 - 直接调用处理函数开始执行
 
-这个脚本实现了从JSON测试用例到美化Excel的完整转换流程，包含智能排序、样式控制和列宽优化等功能。
+这个脚本实现了从 JSON 测试用例到美化 Excel 的完整转换流程，包含智能排序、样式控制和列宽优化等功能。
