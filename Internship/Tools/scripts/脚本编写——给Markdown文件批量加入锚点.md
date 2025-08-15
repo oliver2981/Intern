@@ -141,7 +141,52 @@ elif line.startswith('#### '):
     new_line = f"#### {title} {{#{current_levels[2]}-{current_levels[3]}-{current_levels[4]}}}"
 ```
 
+**方式变种**
+
+上述方法还可以稍微变种，为每个标题增加序号，代码如下：
+
+```python
+def process_markdown_file(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    lines = content.split('\n') # 将文本里的内容按照每一行进行分类，splitlines() 略慢（需检测多种换行符）
+    new_lines = []
+    current_levels = {2: 0, 3: 0, 4: 0}  # 记录各级标题当前编号
+
+    for line in lines:
+        # 匹配二级标题 (##)
+        if line.startswith('## ') and not line.startswith('###'):
+            current_levels[2] += 1
+            current_levels[3] = 0  # 重置三级标题计数器
+            current_levels[4] = 0  # 重置四级标题计数器
+            title = line[3:].strip() #移除标题后的空格，格式统一
+            new_line = f"## {current_levels[2]}. {title} " # Markdown 里为标题添加序号
+            new_lines.append(new_line)
+
+        # 匹配三级标题 (###)
+        elif line.startswith('### ') and not line.startswith('####'):
+            current_levels[3] += 1
+            current_levels[4] = 0  # 重置四级标题计数器
+            title = line[4:].strip()
+            new_line = f"### {current_levels[2]}.{current_levels[3]} {title}"
+            new_lines.append(new_line)
+
+        # 匹配四级标题 (####)
+        elif line.startswith('#### '):
+            current_levels[4] += 1
+            title = line[5:].strip()
+            new_line = f"#### {current_levels[2]}.{current_levels[3]}.{current_levels[4]} {title}"
+            new_lines.append(new_line)
+
+        else:
+            new_lines.append(line)
+```
+
+
+
 #### 2.2.4 文件写入
+
 ```python
 with open(file_path, 'w', encoding='utf-8') as f:
     f.write('\n'.join(new_lines))

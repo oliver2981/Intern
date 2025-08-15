@@ -1,6 +1,6 @@
 # frame/tab 切换，一些技巧
 
-## frame切换
+## 1. frame切换 
 
 [打开这个链接](https://www.byhy.net/cdn2/files/selenium/sample2.html)
 
@@ -58,7 +58,7 @@ for lc in lcs:
 
 
 
-## 窗口切换
+## 2. 窗口切换 
 
 在网页上操作的时候，我们经常遇到，点击一个链接 或者 按钮，就会打开一个 `新窗口` 。
 
@@ -151,17 +151,17 @@ for pg in  context.pages:
 print(pg.title())   
 ```
 
-### 设置当前tab
+### 2.1 设置当前tab
 
 如果当前界面有很多窗口，要把某个窗口作为当前活动窗口显示出来，可以调用该窗口对应的Page对象的 [bring_to_front](https://playwright.dev/python/docs/api/class-page#page-bring-to-front) 方法。
 
-### 关闭网页窗口
+### 2.2 关闭网页窗口
 
 前面学过Browser对象有close 方法，那是关闭整个浏览器。
 
 如果只是要关闭某个网页窗口，可以调用该窗口对应的Page对象的 [close](https://playwright.dev/python/docs/api/class-page#page-close) 方法。
 
-## 冻结界面
+## 3. 冻结界面 
 
 有些网站上面的元素， 我们鼠标放在上面，会动态弹出一些内容。
 
@@ -203,7 +203,7 @@ setTimeout(function(){debugger}, 5000)
 
 然后，我们就可以点击 开发者工具栏的 查看箭头， 再去 点击 `音乐` 图标 ，查看其属性了。
 
-## 截屏
+## 4. 截屏 
 
 要 `整个网页` 截屏，使用 Page 对象的 [screenshot](https://playwright.dev/python/docs/api/class-page#page-screenshot) 方法。
 
@@ -227,7 +227,7 @@ page.screenshot(path='ss1.png', full_page=True)
 page.locator('input[type=file]').screenshot(path='ss2.png')
 ```
 
-## 拖拽
+## 5. 拖拽 
 
 要实现拖拽功能，可以使用Page对象的 [drag_and_drop](https://playwright.dev/python/docs/api/class-page#page-drag-and-drop) 方法。
 
@@ -280,7 +280,7 @@ lc.drag_to(page.locator('[placeholder="captcha"]'))
 
 **注意**， drag_to 的参数是 目标元素的 Locator 对象 ， 而不是 selector 表达式字符串
 
-## 弹出对话框
+## 6. 弹出对话框 
 
 有的时候，我们经常会在操作界面的时候，出现一些弹出的对话框。
 
@@ -290,7 +290,7 @@ lc.drag_to(page.locator('[placeholder="captcha"]'))
 
 弹出的对话框有三种类型，分别是 `alert（警告信息）` 、 `confirm（确认信息）` 和 `prompt（提示输入）`
 
-### Alert
+### 6.1 Alert
 
 Alert 弹出框，目的就是显示通知信息，只需用户看完信息后，点击 OK（确定） 就可以了。
 
@@ -383,7 +383,7 @@ print('点击2次')
 
 会发现，对话框自动取消
 
-### Confirm
+### 6.2 Confirm
 
 Confirm弹出框，主要是让用户确认是否要进行某个操作。
 
@@ -428,7 +428,7 @@ input('....')
 
 会发现打印出来的是 `取消操作`
 
-### Prompt
+### 6.3 Prompt
 
 出现 Prompt 弹出框 是需要用户输入一些信息，提交上去。
 

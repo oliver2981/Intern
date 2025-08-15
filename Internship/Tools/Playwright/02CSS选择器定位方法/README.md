@@ -1,6 +1,6 @@
 # CSS选择器 定位方法
 
-## 定位元素的重要性
+## 1. 定位元素的重要性 
 
 前面这段代码
 
@@ -48,7 +48,7 @@ web 界面自动化，要对界面进行 `操作` ，首先需要 `定位` 界�
 
 HTML网页元素特征定位，最典型的就是 `CSS Selector` 定位方法
 
-## CSS Selector 定位原理
+## 2. CSS Selector 定位原理 
 
 HTML中经常要 为 某些元素 指定 **显示效果**，比如 前景文字颜色是红色， 背景颜色是黑色， 字体是微软雅黑等。
 
@@ -72,7 +72,7 @@ CSS Selector 语法就是用来选择元素的。
 
 CSS Selector 非常强大，学习 Playwright Web自动化一定要学习 CSS Selector
 
-## Locator 对象
+## 3. Locator 对象 
 
 Playwright 中，根据 CSS Selector 选择元素，就是使用 [Locator](https://playwright.dev/python/docs/api/class-locator) 类型的对象
 
@@ -87,7 +87,7 @@ Page对象的 locator 定位到的如果是唯一的 html 元素，就可以调�
 
 具体使用方法见下文
 
-## 根据 tag名、id、class 选择元素
+## 4. 根据 tag名、id、class 选择元素 
 
 
 
@@ -199,7 +199,7 @@ page.locator('.chinese student')
 page.locator('.chinese.student')
 ```
 
-## 验证 CSS Selector
+## 5. 验证 CSS Selector 
 
 那么我们怎么验证 CSS Selector 的语法是否正确选择了我们要选择的元素呢？
 
@@ -240,7 +240,7 @@ of 前面` 的数字表示当前黄色高亮显示的是 `其中第几个元素
 
 ![image](images/36257654_38160817-d286d148-34f5-11e8-8488-db5bf83bc7f3.png)
 
-## 匹配多个元素
+## 6. 匹配多个元素 
 
 如果一个 locator表达式匹配多个元素，要获取所有的元素对应的 locator 对象，使用 `all方法`
 
@@ -278,7 +278,7 @@ lct = page.locator('.plant')
 print(lct.nth(1).inner_text())
 ```
 
-## 元素内部定位
+## 7. 元素内部定位 
 
 前面都是通过 `Page` 对象调用的 locator 方法， 定位的范围是整个网页。
 
@@ -295,7 +295,7 @@ for e in eles:
     print(e.inner_text())
 ```
 
-## 选择 子元素 和 后代元素
+## 8. 选择 子元素 和 后代元素 
 
 HTML中， 元素 内部可以 **包含其他元素**， 比如 下面的 HTML片段
 
@@ -390,7 +390,7 @@ print(lct.all_inner_texts())
 
 
 
-## 根据属性选择
+## 9. 根据属性选择 
 
 
 
@@ -476,7 +476,7 @@ a[href$="gov.cn"]
 
 CSS 选择器 可以指定 选择的元素要 同时具有多个属性的限制，像这样 `div[class=misc][ctype=gun]`
 
-## 选择语法联合使用
+## 10. 选择语法联合使用 
 
 
 
@@ -503,7 +503,7 @@ CSS selector 表达式 可以这样写：
 .footer1 > .copyright[name=cp1]
 ```
 
-## 组选择
+## 11. 组选择 
 
 
 
@@ -555,7 +555,7 @@ for element in elements:
 
 另外注意：组选择结果列表中，选中元素排序， 不是 组表达式的次序， 而是符合这些表达式的元素，在HTML文档中的出现的次序。
 
-## 按次序选择子节点
+## 12. 按次序选择子节点 
 
 [请点击打开这个网址](https://www.byhy.net/cdn2/files/selenium/sample1b.html)
 
@@ -587,7 +587,7 @@ for element in elements:
     </body>
 ```
 
-### 父元素的第n个子节点
+### 12.1 父元素的第n个子节点
 
 可以指定选择的元素 `是父元素的第几个子节点`
 
@@ -607,7 +607,7 @@ for element in elements:
 
 就是选择所有位置为第2个的所有元素，不管是什么类型
 
-### 父元素的倒数第n个子节点
+### 12.2 父元素的倒数第n个子节点
 
 也可以反过来， 选择的是父元素的 `倒数第几个子节点` ，使用 `nth-last-child`
 
@@ -619,7 +619,7 @@ p:nth-last-child(1)
 
 就是选择第倒数第1个子元素，并且是p元素
 
-### 父元素的第几个某类型的子节点
+### 12.3 父元素的第几个某类型的子节点
 
 我们可以指定选择的元素 是父元素的第几个 `某类型的` 子节点
 
@@ -639,7 +639,7 @@ p:nth-last-child(1)
 
 所以也可以这样写 `span:nth-of-type(1)`
 
-### 父元素的倒数第几个某类型的子节点
+### 12.4 父元素的倒数第几个某类型的子节点
 
 当然也可以反过来， 选择父元素的 `倒数第几个某类型` 的子节点
 
@@ -651,7 +651,7 @@ p:nth-last-child(1)
 p:nth-last-of-type(2)
 ```
 
-### 奇数节点和偶数节点
+### 12.5 奇数节点和偶数节点
 
 如果要选择的是父元素的 `偶数节点`，使用 `nth-child(even)`
 
@@ -673,9 +673,9 @@ p:nth-child(odd)
 
 如果要选择的是父元素的 `某类型奇数节点`，使用 `nth-of-type(odd)`
 
-## 兄弟节点选择
+## 13. 兄弟节点选择 
 
-### 相邻兄弟节点选择
+### 13.1 相邻兄弟节点选择
 
 上面的例子里面，我们要选择 唐诗 和宋词 的第一个 作者
 
@@ -685,6 +685,6 @@ p:nth-child(odd)
 
 表示元素 紧跟关系的 是 `加号`
 
-### 后续所有兄弟节点选择
+### 13.2 后续所有兄弟节点选择
 
 如果要选择是 选择 h3 `后面所有的兄弟节点` span，可以这样写 `h3 ~ span`

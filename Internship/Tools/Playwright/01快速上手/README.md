@@ -1,6 +1,6 @@
 # 快速上手
 
-## 原理
+## 1. 原理 
 
 `Playwright` 是微软开发的 `Web应用` 的 `自动化测试框架` 。
 
@@ -22,15 +22,15 @@ Selenium 只提供了 Web 自动化功能， 如果你要做自动化测试，�
 
 ![image](./images/tut_20231105181519_81.png)
 
-## 安装
+## 2. 安装 
 
 Playwright 也支持多种语言开发，比如 JavaScript/TypeScript， Python， Java， C#
 
-### 安装 playwright 客户端库
+### 2.1 安装 playwright 客户端库
 
 执行 `pip install playwright`
 
-### 安装 浏览器
+### 2.2 安装 浏览器
 
 playwright 这个项目默认使用自己编译好的几种浏览器，比如 `chromium， firefox， webkit`
 
@@ -55,7 +55,7 @@ playwright 每个版本都绑定 自编译浏览器的某个版本， 可以通�
 
 playwright使用自编译浏览器不会自动更新，从而避免驱动和浏览器不匹配的问题。
 
-## 简单示例
+## 3. 简单示例 
 
 ```python
 from playwright.sync_api import sync_playwright
@@ -133,7 +133,7 @@ with sync_playwright() as p:
     browser.close()
 ```
 
-## 界面等待
+## 4. 界面等待 
 
 上面的代码，不能打印出股票搜索的结果，
 
@@ -147,7 +147,7 @@ with sync_playwright() as p:
 page.wait_for_timeout(1000)
 ```
 
-## 自动化代码助手
+## 5. 自动化代码助手 
 
 Playwright 内置了 `代码助手` 的功能，可以帮我们产生 自动化代码
 
@@ -180,7 +180,7 @@ for lc in lcs:
     print(lc.inner_text())
 ```
 
-## 跟踪功能
+## 6. 跟踪功能 
 
 Playwright 有个特色功能： 跟踪（tracing）
 

@@ -1,6 +1,6 @@
 # Xpath/Role/视觉 定位方法
 
-## Xpath 定位
+## 1. Xpath 定位 
 
 XPath (XML Path Language) 是由国际标准化组织W3C指定的，用来在 XML 和 HTML 文档中选择节点的语言。
 
@@ -22,7 +22,7 @@ element = page.locator('//*[@href="http://www.miitbeian.gov.cn"]')
 
 
 
-## Playwright更推荐的定位
+## 2. Playwright更推荐的定位 
 
 CSS 选择器定位/xpath定位，都是根据 `HTML网页元素特征` 的定位，属于开发者角度的定位。
 
@@ -38,7 +38,7 @@ Playwright 优先不推荐这样，它推荐从用户角度视觉呈现的定位
 
 
 
-## 根据文本内容定位
+## 3. 根据文本内容定位 
 
 有时我们想获取页面包含某些文字的元素， 这用 css selector 不好选择，可以使用 Page/Locator 对象的 [get_by_text](https://playwright.dev/python/docs/api/class-locator#locator-get-by-text) 方法
 
@@ -83,9 +83,9 @@ elements = page.get_by_text(re.compile("11$")).all()
 
 正则表达式 `11$` 表示以 `11` 结尾，通过正则表达式，我们可以进行各种复杂的基于文本模式的定位。
 
-## 根据 元素 role 定位
+## 4. 根据 元素 role 定位 
 
-### ARIA Role
+### 4.1 ARIA Role
 
 Playwright 支持根据 元素 `角色 role）` 定位。
 
@@ -173,7 +173,7 @@ lc = page.get_by_role('searchbox')
 print(lc.fill('oliver'))
 ```
 
-### ARIA Attribute
+### 4.2 ARIA Attribute
 
 ARIA规范除了可以给元素添加 `ARIA role` ，还可以添加其它 [ARIA属性（ARIA attributes）](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) ，比如
 
@@ -210,7 +210,7 @@ lc = page.get_by_role('heading',level=2)
 print(lc.inner_text())
 ```
 
-### Accessible Name
+### 4.3 Accessible Name
 
 只根据 `ARIA role` 和 `ARIA属性` 往往并不能唯一定位元素。
 
@@ -305,7 +305,7 @@ page.get_by_role("checkbox", name="Subscribe")
 
 它的 Accessible Name 值为 `banana` ，role 为 `img`
 
-### 使用 codegen 助手
+### 4.4 使用 codegen 助手
 
 Playwright 认为， 这种根据role定位是 用户 或者辅助技术 直观感知页面的方式， 应该是最优先使用的。
 
@@ -321,13 +321,13 @@ Playwright 认为， 这种根据role定位是 用户 或者辅助技术 直观�
 playwright codegen
 ```
 
-## 其它用户视觉定位
+## 5. 其它用户视觉定位 
 
 下面的这4种定位，也属于根据用户视觉上的内容定位。
 
 可以通过代码助手产生，其实也完全可以用 css selector 定位替代。
 
-### 根据 元素 placeholder 定位
+### 5.1 根据 元素 placeholder 定位
 
 `input` 元素，通常都有 `placeholder` 属性，
 
@@ -351,7 +351,7 @@ page.get_by_placeholder('captcha',exact=True).fill('白月黑羽')
 
 作用类似 get_by_role 里面的 `exact` 参数
 
-### 根据 元素关联的 label 定位
+### 5.2 根据 元素关联的 label 定位
 
 `input` 元素，通常都有关联的 label
 
@@ -378,7 +378,7 @@ page.get_by_label("Password").fill("secret")
 
 `get_by_label` 也有 `exact` 参数，作用和 `get_by_placeholder` 里面的 `exact` 参数 一样。
 
-### 根据 元素的 alt text 定位
+### 5.3 根据 元素的 alt text 定位
 
 有些元素，比如 `img` 元素，通常都有 `alt` 属性
 
@@ -405,7 +405,7 @@ print(href)
 
 `get_by_alt_text` 也有 `exact` 参数，作用和 `get_by_placeholder` 里面的 `exact` 参数 一样。
 
-### 根据 元素 title 定位
+### 5.4 根据 元素 title 定位
 
 有些元素，比如 `span`, `a` 等等，可能有 `title` 属性，当鼠标悬浮在该元素上时，可以显示title属性内在一个提示框里面
 
@@ -429,7 +429,7 @@ page.get_by_title("byhy首页").click()
 
 `get_by_title` 也有 `exact` 参数，作用和 `get_by_placeholder` 里面的 `exact` 参数 一样。
 
-## 缺省等待时间
+## 6. 缺省等待时间 
 
 Playwright 中，当我们定位元素（比如 通过locator/get_by_text 等方法）后，对元素进行操作（比如 click, fill），
 
