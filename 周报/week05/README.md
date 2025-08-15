@@ -10,7 +10,7 @@
 | **1. 前端基础学习** |                                                              |        |                                                              |
 | CSS 学习            | 通过网络检索并进行学习总结                                   | 60%    | ⭕ 进行了解，学习文档待制作                                   |
 | **2. 工具学习**     |                                                              |        |                                                              |
-| Playwright          | 学习了 Playwright 在 pytho 与 VScode 中的使用，并保存总结[文档](/Internship/Tools/Playwright) | 100%   | ✅ 已能熟练使用 Playwright 中各项元素的定位方法               |
+| Playwright          | 学习了 Playwright 在 python 与 VScode 中的使用，并保存总结[文档](/Internship/Tools/Playwright) | 100%   | ✅ 已能熟练使用 Playwright 中各项元素的定位方法               |
 | **3. 测试实践**     |                                                              |        |                                                              |
 | 实际测试            | 通过 2 条测试用例进行 AutoLib 的测试与相应的 UI 脚本编写     | 100%   | ✅ 上手测试流程                                               |
 | 脚本编写            | 编写 1 个脚本为 SailWind Docs 标题添加锚点，用于跳转定位     | 100%   | ✅ 加深了对脚本编写的认知，并且用[文档](/Internship/Tools/scripts/脚本编写——给Markdown文件批量加入锚点.md)总结 |
