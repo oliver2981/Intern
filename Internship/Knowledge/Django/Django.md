@@ -329,3 +329,86 @@ def listcustomers(request):
 
 ## 5. 增删改查
 
+现在我们需要一个管理员 app 来进行数据库的增删改查，执行
+
+```bash
+python manage.py startapp mgr 
+```
+
+我们都是在views.py 里面定义函数，处理 http请求的。
+
+但是可以想象， 以后，这个mgr应用要处理很多类型的http请求。
+
+都用这个views.py 就会让这个文件非常的庞大， 不好维护。所以，我们可以用不同的 py 文件处理不同类型的http请求。
+
+比如，这里我们可以新增一个文件 customer.py， 专门处理 客户端对 customer 数据的操作。
+
+将来如果客户端有对其他类型数据的操作， 比如 order 数据， 我们就可以添加 orders.py 来处理。
+
+------
+
+接下来，如果资源的增删改查 操作， 都是**同一个URL**，都是 `/api/mgr/customers` 。
+
+而且我们发现，不同的操作请求，使用不同的 HTTP 请求方法 ，比如 添加是POST， 查询是 GET， 修改是 PUT， 删除是 DELETE。
+
+```python
+from django.http import JsonResponse
+import json
+
+def dispatcher(request):
+    # 将请求参数统一放入request 的 params 属性中，方便后续处理
+
+    # GET请求 参数在url中，同过request 对象的 GET属性获取
+    if request.method == 'GET':
+        request.params = request.GET
+
+    # POST/PUT/DELETE 请求 参数 从 request 对象的 body 属性中获取
+    elif request.method in ['POST','PUT','DELETE']:
+        # 根据接口，POST/PUT/DELETE 请求的消息体都是 json格式
+        request.params = json.loads(request.body)
+
+
+    # 根据不同的action分派给不同的函数进行处理
+    action = request.params['action']
+    if action == 'list_customer':
+        return listcustomers(request)
+    elif action == 'add_customer':
+        return addcustomer(request)
+    elif action == 'modify_customer':
+        return modifycustomer(request)
+    elif action == 'del_customer':
+        return deletecustomer(request)
+
+    else:
+        return JsonResponse({'ret': 1, 'msg': '不支持该类型http请求'})
+```
+
+凡是 API 请求url为 `/api/mgr/customers` 的，都属于 客户 相关的API， 都应该交由 我们上面定义的dispatch函数进行分派处理。
+
+那么我们需要在Django的url路由文件中加入对应的路由。
+
+所以，
+
+第一步：我们应该在 总路由文件 `oliver/urls.py` 中定义了如下部分
+
+```python
+    # 凡是 url 以 api/mgr  开头的，
+    # 都根据 mgr.urls 里面的 子路由表进行路由
+    path('api/mgr/', include('mgr.urls')),
+```
+
+第二步： 在 mgr 目录下面添加 urls.py 路由文件， 并 加入如下声明即可， 如下所示
+
+```python
+from django.urls import path
+
+from mgr import customer
+
+urlpatterns = [
+
+    path('customers', customer.dispatcher),
+]
+```
+
+这样，就表示 凡是 API 请求url为 `/api/mgr/customers` 的，都交由 我们上面定义的dispatch函数进行分派处理
+
