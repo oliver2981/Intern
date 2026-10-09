@@ -109,5 +109,5 @@ allure serve allure-results  # 查看 Allure 报告
 ## 5. 相关笔记
 
 - 项目源码 / 说明：[github.com/oliver2981/web-ui-automation](https://github.com/oliver2981/web-ui-automation)
-- 项目里的七篇学习笔记（在仓库 `docs/` 目录）：从环境搭建、Playwright 上手、Page Object、pytest 参数化、元素定位与断言，到失败截图与 Allure、项目复盘与面试话术。
+- 项目里的六篇学习笔记（在仓库 `docs/` 目录）：从环境搭建、Playwright 上手、Page Object、pytest 参数化、元素定位与断言，到失败截图与 Allure。
 - 实习期整理的 Playwright 基础笔记，见本仓库：`Internship/Tools/Playwright/`。
